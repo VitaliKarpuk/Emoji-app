@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import emoji from '../emojiList'
 let pushSymbols = [];
-let emojiTitle = [];
+let pushTitle = [];
 let arrResult = [];
 let li= [];
 export class NameForm extends Component {
@@ -18,40 +18,40 @@ export class NameForm extends Component {
       }) 
   function Em(){
     for (let i=0; i < emoji.length; i++){
-      let srSp = emoji[i].keywords.split(' ')
-      for (let j = 0; j < srSp.length; j++){
-        if(srSp[j] === event.target.value){
-          arrResult.push(srSp[j]);
+      let splitKeywords = emoji[i].keywords.split(' ')
+      for (let j = 0; j < splitKeywords.length; j++){
+        if(splitKeywords[j] === event.target.value ){
+          arrResult.push(splitKeywords[j]);
           pushSymbols.push(emoji[i].symbol);
-          emojiTitle.push(emoji[i].title);
-          li[0] = <li className='li'>{emojiTitle[0]} {pushSymbols[0]} </li>
-          li[1] = <li className='li' >{emojiTitle[1]} {pushSymbols[1]}</li>
-          li[2] = <li className='li' >{emojiTitle[2]} {pushSymbols[2]}</li>
-          li[3] = <li className='li' >{emojiTitle[3]} {pushSymbols[3]}</li>
-          li[4] = <li className='li' >{emojiTitle[4]} {pushSymbols[4]}</li>
-          li[5] = <li className='li' >{emojiTitle[5]} {pushSymbols[5]}</li>
-          li[6] = <li className='li' >{emojiTitle[6]} {pushSymbols[6]}</li>
-          li[7] = <li className='li' >{emojiTitle[7]} {pushSymbols[7]}</li>
-          li[8] = <li className='li' >{emojiTitle[8]} {pushSymbols[8]}</li>
-          li[9] = <li className='li' >{emojiTitle[9]} {pushSymbols[9]}</li>
+          pushTitle.push(emoji[i].title);
+          li[0] = <li className='li'>{pushTitle[0]} {pushSymbols[0]} </li>
+          li[1] = <li className='li' >{pushTitle[1]} {pushSymbols[1]}</li>
+          li[2] = <li className='li' >{pushTitle[2]} {pushSymbols[2]}</li>
+          li[3] = <li className='li' >{pushTitle[3]} {pushSymbols[3]}</li>
+          li[4] = <li className='li' >{pushTitle[4]} {pushSymbols[4]}</li>
+          li[5] = <li className='li' >{pushTitle[5]} {pushSymbols[5]}</li>
+          li[6] = <li className='li' >{pushTitle[6]} {pushSymbols[6]}</li>
+          li[7] = <li className='li' >{pushTitle[7]} {pushSymbols[7]}</li>
+          li[8] = <li className='li' >{pushTitle[8]} {pushSymbols[8]}</li>
+          li[9] = <li className='li' >{pushTitle[9]} {pushSymbols[9]}</li>
           for (let q =0; q < li.length; q++){
               if (li[q].props.children[0] === undefined){
                 li[q] = undefined;
               }
           }
-        } else if( event.target.value !== srSp[j]){  
+        } else if( event.target.value !== splitKeywords[j]){  
           for(let g = 0; g < arrResult.length; g++){
             if(event.target.value !== arrResult[g] ){
               arrResult =[];
               pushSymbols =[];
-              emojiTitle =[];
+              pushTitle =[];
               li = [];
-            
             }
           }
         }
       }
-    }}
+    }
+  }
 Em();
 };
 handleSubmit = (event) => {
@@ -59,7 +59,6 @@ handleSubmit = (event) => {
 }
 render() {
   return (
-    <>
     <form onSubmit={this.handleSubmit}>
       <label>
         <h2>Search: </h2>
@@ -71,9 +70,6 @@ render() {
       </label>
       <input type="submit" value="Search" className='button'/>
     </form>
-    
-    </>
-    
   );
 }
 }
